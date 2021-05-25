@@ -10,7 +10,7 @@ function init() {
         return;
     }
 
-    Cone(g1);
+    Cone(gl);
 
     render();
 }
