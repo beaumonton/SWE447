@@ -10,7 +10,7 @@ function init()
     alert("Unable to setup WebGL");
     return;
   }
-  Cube(gl);
+  Cube();
   render();
 }
 
