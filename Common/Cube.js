@@ -1,8 +1,7 @@
-function Cube( vertexShaderId, fragmentShaderId ) {
-
+function Cube( vertexShaderId, fragmentShaderId ) 
+{
     // Initialize the shader pipeline for this object using either shader ids
     //   declared in the application's HTML header, or use the default names.
-    //
     var vertShader = vertexShaderId || "Cube-vertex-shader";
     var fragShader = fragmentShaderId || "Cube-fragment-shader";
 
@@ -32,7 +31,8 @@ function Cube( vertexShaderId, fragmentShaderId ) {
     };
     
     this.indices = { 
-        values : new Uint16Array([
+        values : new Uint16Array
+        ([
             // Add your list of triangle indices here
             //Front
             0, 2, 1, 
@@ -79,7 +79,7 @@ function Cube( vertexShaderId, fragmentShaderId ) {
  
         gl.bindBuffer( gl.ELEMENT_ARRAY_BUFFER, this.indices.buffer );
 
-        // gl.uniformMatrix4fv( MVLoc, gl.FALSE, flatten(this.MV) );
+        gl.uniformMatrix4fv( MVLoc, gl.FALSE, flatten(this.MV) );
 
         // Draw the cube's base
         gl.drawElements( gl.TRIANGLES, this.indices.count, gl.UNSIGNED_SHORT, 0 );
