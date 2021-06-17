@@ -192,13 +192,15 @@ function render() {
   planet.render();
   ms.pop();
 
+  earth = SolarSystem["Earth"];
+
   name = "Moon";
   planet = Planets[name];
   data = SolarSystem[name];
   axis = [0, 0, 1];
   ms.push();
   ms.rotate(data.year * time, axis);
-  ms.translate(0, data.distance, 0);
+  ms.translate(0, earth.distance + data.distance, 0);
   ms.scale(data.radius);
   gl.useProgram(planet.program);
   gl.uniformMatrix4fv(planet.uniforms.MV, false, flatten(ms.current()));
