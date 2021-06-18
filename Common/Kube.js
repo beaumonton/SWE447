@@ -139,13 +139,14 @@ function Kube( vertexShaderId, fragmentShaderId ) {
 	function initTexture () {
 		texture = gl.createTexture();
 		texImage = new Image();
+		texImage.src = "https://webglfundamentals.org/webgl/resources/f-texture.png";
 		texImage.onload = function () 
 		{
 			loadTexture(texImage, texture);
 		};
-		//texImage.src = "https://webglfundamentals.org/webgl/resources/f-texture.png";
+		texImage.src = "https://webglfundamentals.org/webgl/resources/f-texture.png";
 		//texImage.src = "test1.png"; 
-		texImage.src = "test2.png";
+		//texImage.src = "test2.png";
 	}
     initTexture();
 	
@@ -167,7 +168,7 @@ function Kube( vertexShaderId, fragmentShaderId ) {
 	this.textures.attributeLoc = gl.getAttribLocation( this.program, "vTexCoord" );
 	gl.enableVertexAttribArray( this.textures.attributeLoc );
 
-    texLoc = gl.getUniformLocation(this.program, 'tex')
+    texLoc = gl.getUniformLocation(this.program, 'tex');
 	MVLoc = gl.getUniformLocation(this.program, "MV");
 
     this.MV = undefined;
