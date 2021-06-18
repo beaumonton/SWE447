@@ -7,6 +7,7 @@
 <script src="../Common/webgl-utils.js"></script>
 <script src="../Common/initShaders.js"></script>
 <script src="../Common/MV.js"></script>
+<script src="../Common/MatrixStack.js"></script>
 <script src="../Common/Kube.js"></script>
 <script src="rotatingCube.js"></script>
 
@@ -15,11 +16,12 @@ attribute vec4 vPosition;
 attribute vec2 vTexCoord;
 varying vec2 fTexCoord;
 uniform mat4 MV;
+uniform mat4 PM;
 
 void main()
 {
     gl_PointSize = 5.0;
-    gl_Position = MV * vPosition;
+    gl_Position = PM * MV * vPosition;
     fTexCoord = vTexCoord;
 }
 </script>
@@ -30,7 +32,6 @@ varying vec2 fTexCoord;
 uniform sampler2D tex;
 void main()
 {
-     //gl_FragColor = vec4(1.0, 0.0, gl_FrontFacing ? 1.0 : 0.0, 1.0);
     gl_FragColor = texture2D(tex, fTexCoord);
 }
 </script>
