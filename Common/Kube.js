@@ -139,7 +139,8 @@ function Kube( vertexShaderId, fragmentShaderId ) {
 	function initTexture () {
 		texture = gl.createTexture();
 		texImage = new Image();
-		texImage.onload = function () {
+		texImage.onload = function () 
+		{
 			loadTexture(texImage, texture);
 		};
 		//texImage.src = "https://webglfundamentals.org/webgl/resources/f-texture.png";
