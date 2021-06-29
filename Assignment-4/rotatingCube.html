@@ -1,43 +1,43 @@
 <!DOCTYPE html>
 
 <html lang="en">
-<head>
-<meta charset="utf-8"/>
+	<head>
+		<meta charset="utf-8"/>
 
-<script src="../Common/webgl-utils.js"></script>
-<script src="../Common/initShaders.js"></script>
-<script src="../Common/MV.js"></script>
-<script src="../Common/MatrixStack.js"></script>
-<script src="../Common/Kube.js"></script>
-<script src="rotatingCube.js"></script>
+		<script src="../Common/webgl-utils.js"></script>
+		<script src="../Common/initShaders.js"></script>
+		<script src="../Common/MV.js"></script>
+		<script src="../Common/MatrixStack.js"></script>
+		<script src="../Common/Kube.js"></script>
+		<script src="rotatingCube.js"></script>
 
-<script id="Cube-vertex-shader" type="x-shader/x-vertex">
-attribute vec4 vPosition;
-attribute vec2 vTexCoord;
-varying vec2 fTexCoord;
-uniform mat4 MV;
-uniform mat4 PM;
+		<script id="Cube-vertex-shader" type="x-shader/x-vertex">
+			attribute vec4 vPosition;
+			attribute vec2 vTexCoord;
+			varying vec2 fTexCoord;
+			uniform mat4 MV;
+			uniform mat4 PM;
 
-void main()
-{
-    gl_PointSize = 5.0;
-    gl_Position = PM * MV * vPosition;
-    fTexCoord = vTexCoord;
-}
-</script>
+			void main()
+			{
+				gl_PointSize = 5.0;
+				gl_Position = PM * MV * vPosition;
+				fTexCoord = vTexCoord;
+			}
+		</script>
 
-<script id="Cube-fragment-shader" type="x-shader/x-fragment">
-precision highp float;
-varying vec2 fTexCoord;
-uniform sampler2D tex;
-void main()
-{
-    gl_FragColor = texture2D(tex, fTexCoord);
-}
-</script>
-</head>
+		<script id="Cube-fragment-shader" type="x-shader/x-fragment">
+			precision highp float;
+			varying vec2 fTexCoord;
+			uniform sampler2D tex;
+			void main()
+			{		
+				gl_FragColor = texture2D(tex, fTexCoord);
+			}
+		</script>
+	</head>
 
-<body>
-<canvas id="webgl-canvas" width="512" height="512" style="background-color: #0000FF"></canvas>
-</body>
+	<body>
+		<canvas id="webgl-canvas" width="512" height="512" style="background-color: #0000FF"></canvas>
+	</body>
 </html>
