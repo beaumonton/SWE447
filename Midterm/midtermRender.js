@@ -2,12 +2,12 @@ var canvas;
 var gl;
 var V;
 var P;
-var near = 10;
-var far = 120;
+var near = 1;
+var far = 1000;
 
 
 var time = 0.0;
-var timeDelta = 0.5;
+var timeDelta = 0.7;
 
 var ms = new MatrixStack();
 
@@ -48,7 +48,7 @@ function init()
 
   for (var name in BGs) 
   {
-    var backdrop = BGs[name].model = new BG(BGs[name].source);
+    var backdrop = BGs[name].model = new Background();
 
     backdrop.uniforms = 
     {
@@ -83,6 +83,57 @@ function render()
 function drawSpheres() 
 {
   var name, sphere;
+
+  name = "OuterGrass";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //ms.rotate(time * -2, [0, 0, 1]);
+  ms.translate(0, -50, (sphere.distance));
+  ms.rotate(time * -2, [0, 0, 1]);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "Road";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //ms.rotate(time * -2, [0, 0, 1]);
+  ms.translate(0, -50, (sphere.distance));
+  ms.rotate(time * -2, [0, 0, 1]);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "InnerGrass";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //ms.rotate(time * -2, [0, 0, 1]);
+  ms.translate(0, -50, (sphere.distance));
+  ms.rotate(time * -2, [0, 0, 1]);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
 
   // Outer ring of wheel
   name = "Tire";
@@ -127,6 +178,180 @@ function drawSpheres()
   ms.push();
   ms.rotate(time * 2, [0, 0, 1]);
   ms.translate(0, 0, (sphere.distance));
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "Leaf1";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //PIVOT POINT
+  ms.translate(0, -50, (sphere.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //MOVE AWAY FROM ORIGIN
+  ms.translate(122, 0, 0);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "Leaf2";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //PIVOT POINT
+  ms.translate(0, -50, (sphere.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LOCAL ROTATE
+  ms.rotate(45, [0, 0, 45]);
+  //MOVE AWAY FROM ORIGIN
+  ms.translate(122, 0, 0);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "Leaf3";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //PIVOT POINT
+  ms.translate(0, -50, (sphere.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LOCAL ROTATE
+  ms.rotate(90, [0, 0, 45]);
+  //MOVE AWAY FROM ORIGIN
+  ms.translate(122, 0, 0);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "Leaf4";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //PIVOT POINT
+  ms.translate(0, -50, (sphere.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LOCAL ROTATE
+  ms.rotate(135, [0, 0, 45]);
+  //MOVE AWAY FROM ORIGIN
+  ms.translate(122, 0, 0);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "Leaf5";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //PIVOT POINT
+  ms.translate(0, -50, (sphere.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LOCAL ROTATE
+  ms.rotate(180, [0, 0, 45]);
+  //MOVE AWAY FROM ORIGIN
+  ms.translate(122, 0, 0);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "Leaf6";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //PIVOT POINT
+  ms.translate(0, -50, (sphere.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LOCAL ROTATE
+  ms.rotate(225, [0, 0, 45]);
+  //MOVE AWAY FROM ORIGIN
+  ms.translate(122, 0, 0);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "Leaf7";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //PIVOT POINT
+  ms.translate(0, -50, (sphere.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LOCAL ROTATE
+  ms.rotate(270, [0, 0, 45]);
+  //MOVE AWAY FROM ORIGIN
+  ms.translate(122, 0, 0);
+  ms.scale(sphere.radius);
+  gl.useProgram(sphere.model.program);
+  gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(sphere.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(sphere.model.uniforms.color, flatten(sphere.color));
+  sphere.model.render();
+  ms.pop();
+
+  name = "Leaf8";
+  sphere = Spheres[name];
+
+  sphere.model.PointMode = false;
+
+  ms.push();
+  //PIVOT POINT
+  ms.translate(0, -50, (sphere.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LOCAL ROTATE
+  ms.rotate(315, [0, 0, 45]);
+  //MOVE AWAY FROM ORIGIN
+  ms.translate(122, 0, 0);
   ms.scale(sphere.radius);
   gl.useProgram(sphere.model.program);
   gl.uniformMatrix4fv(sphere.model.uniforms.MV, false, flatten(ms.current()));
@@ -219,6 +444,113 @@ function drawCylinders()
   cylinder.model.render();
   ms.pop();
 
+  name = "Tree1";
+  cylinder = Cylinders[name];
+
+  cylinder.model.PointMode = false;
+
+  ms.push();
+  //ms.rotate(time * -2, [1, 0, 0]);
+
+  //PIVOT POINT
+  ms.translate(0, -50, (cylinder.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LAY DOWN => |
+  ms.rotate(90, [0, -1, 0]);
+  //ROTATE LOCAL
+  ms.rotate(135, [1, 0, 0]);
+  //MOVE AWAY FROM ORIGIN
+  //ms.translate(0, 0, 50);
+
+  ms.scale(cylinder.radius);
+  ms.scale(1, 1, 60);
+  gl.useProgram(cylinder.model.program);
+  gl.uniformMatrix4fv(cylinder.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(cylinder.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(cylinder.model.uniforms.color, flatten(cylinder.color));
+  cylinder.model.render();
+  ms.pop();
+
+  name = "Tree2";
+  cylinder = Cylinders[name];
+
+  cylinder.model.PointMode = false;
+
+  ms.push();
+
+  //MOVE ORIGIN
+  ms.translate(0, -50, (cylinder.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LAY DOWN
+  ms.rotate(90, [0, -1, 0]);
+  //LOCAL ROTATE
+  ms.rotate(45, [1, 0, 0]);
+  //MOVE AWAY FROM ORIGIN
+  //ms.translate(0, 0, 50);
+
+  ms.scale(cylinder.radius);
+  ms.scale(1, 1, 60);
+  gl.useProgram(cylinder.model.program);
+  gl.uniformMatrix4fv(cylinder.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(cylinder.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(cylinder.model.uniforms.color, flatten(cylinder.color));
+  cylinder.model.render();
+  ms.pop();
+
+  name = "Tree3";
+  cylinder = Cylinders[name];
+
+  cylinder.model.PointMode = false;
+
+  ms.push();
+  //MOVE ORIGIN
+  ms.translate(0, -50, (cylinder.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LAY DOWN
+  ms.rotate(90, [0, -1, 0]);
+  //LOCAL ROTATE
+  ms.rotate(180, [1, 0, 0]);
+  //MOVE AWAY FROM ORIGIN
+  //ms.translate(0, 0, 50);
+
+  ms.scale(cylinder.radius);
+  ms.scale(1, 1, 60);
+  gl.useProgram(cylinder.model.program);
+  gl.uniformMatrix4fv(cylinder.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(cylinder.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(cylinder.model.uniforms.color, flatten(cylinder.color));
+  cylinder.model.render();
+  ms.pop();
+
+  name = "Tree4";
+  cylinder = Cylinders[name];
+
+  cylinder.model.PointMode = false;
+
+  ms.push();
+  //MOVE ORIGIN
+  ms.translate(0, -50, (cylinder.distance));
+  //ROTATE
+  ms.rotate(time * -2, [0, 0, 1]);
+  //LAY DOWN
+  ms.rotate(90, [0, -1, 0]);
+  //LOCAL ROTATE
+  ms.rotate(270, [1, 0, 0]);
+  //MOVE AWAY FROM ORIGIN
+  //ms.translate(0, 0, 50);
+
+  ms.scale(cylinder.radius);
+  ms.scale(1, 1, 60);
+  gl.useProgram(cylinder.model.program);
+  gl.uniformMatrix4fv(cylinder.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(cylinder.model.uniforms.P, false, flatten(P));
+  gl.uniform4fv(cylinder.model.uniforms.color, flatten(cylinder.color));
+  cylinder.model.render();
+  ms.pop();
+
 }
 
 function drawBG() 
@@ -227,15 +559,15 @@ function drawBG()
 
   name = "Background";
   back = BGs[name];
-  data = Objects[name];
+  //data = Objects[name];
 
   ms.push();
   ms.rotate((time / 1) * 2, [0, 0, 1]);
 
   gl.useProgram(back.program);
-  gl.uniformMatrix4fv(back.uniforms.MV, false, flatten(ms.current()));
-  gl.uniformMatrix4fv(back.uniforms.P, false, flatten(P));
-  gl.uniform1i(back.uniforms.texture, 0);
+  gl.uniformMatrix4fv(back.model.uniforms.MV, false, flatten(ms.current()));
+  gl.uniformMatrix4fv(back.model.uniforms.P, false, flatten(P));
+  gl.uniform1i(back.model.uniforms.texture, 0);
   back.render();
   ms.pop();
 }
@@ -247,7 +579,7 @@ function resize()
 
   gl.viewport(0, 0, w, h);
 
-  var fovy = 75.0; // degrees
+  var fovy = 20.0;
   var aspect = w / h;
 
   P = perspective(fovy, aspect, near, far);

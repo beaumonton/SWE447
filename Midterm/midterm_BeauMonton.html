@@ -18,7 +18,8 @@
     uniform mat4  MV;
     uniform mat4  P;
 
-    void main() {
+    void main() 
+    {
       gl_Position = P * MV * vPosition;
     }
   </script>
@@ -28,7 +29,8 @@
   
     uniform vec4 color;
 
-    void main() {
+    void main() 
+    {
       gl_FragColor = color;
     }
   </script>
@@ -43,7 +45,8 @@
     uniform mat4  MV;
     uniform mat4  P;
   
-    void main() {
+    void main() 
+    {
 
       gl_Position = P * MV * vPosition;
       fTexCoord = vTexCoord; 
@@ -57,7 +60,8 @@
     
     uniform sampler2D uSampler;
     
-    void main() {
+    void main() 
+    {
       gl_FragColor = texture2D(uSampler, fTexCoord); 
     }
   </script>
